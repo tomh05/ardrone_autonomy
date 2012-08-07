@@ -79,7 +79,9 @@ extern "C" {
                 (double) TAG_TYPE_MASK(TAG_TYPE_BLACK_ROUNDEL));
 //        ardrone_application_default_config.detections_select_v = rosDriver->getRosParam("~detections_select_v", 
 //                (double) TAG_TYPE_MASK(TAG_TYPE_BLACK_ROUNDEL));
-       
+        // 0: 22 Hz, 1: 25Hz
+        int ultra_freq_select = ((int) rosDriver->getRosParam("~ultrasound_freq_select", (double) 0.0)) % 2;
+        ardrone_application_default_config.ultrasound_freq = ADC_CMD_SELECT_ULTRASOUND_22Hz + ultra_freq_select;
         ardrone_application_default_config.navdata_options = NAVDATA_OPTION_FULL_MASK /*&
         ~(NAVDATA_OPTION_MASK(NAVDATA_TRACKERS_SEND_TAG)
         | NAVDATA_OPTION_MASK(NAVDATA_VISION_OF_TAG)

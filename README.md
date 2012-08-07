@@ -168,6 +168,7 @@ The parameters listed below are named according to AR-Drone's SDK 2.0 configurat
 * `enemy_without_shell` - Default: 1
 * `detections_select_h` - Default: `TAG_TYPE_MASK(TAG_TYPE_SHELL_TAG_V2)` (The macro is defined in `ardrone_api.h`)
 * `detections_select_v_hsync` - Default: `TAG_TYPE_MASK(TAG_TYPE_BLACK_ROUNDEL)` (The macro is defined in `ardrone_api.h`)
+* `ultrasound_freq_select` - Selects the ultrasound frequency (0: 22Hz, 1: 25Hz) - Default: 0
 
 ## License
 
