@@ -59,6 +59,7 @@ extern "C" {
         ardrone_application_default_config.bitrate_ctrl_mode = (int) rosDriver->getRosParam("~bitrate_ctrl_mode", (double) VBC_MODE_DISABLED);
         if (IS_ARDRONE2)
         {
+            ardrone_application_default_config.video_on_usb = 0;
             ardrone_application_default_config.max_bitrate = (int) rosDriver->getRosParam("~max_bitrate", 4000.0);
         }
         ardrone_application_default_config.bitrate = (int) rosDriver->getRosParam("~bitrate", 4000.0);
@@ -92,7 +93,6 @@ extern "C" {
         ardrone_application_default_config.control_level = (0 << CONTROL_LEVEL_COMBINED_YAW);
         ardrone_application_default_config.autonomous_flight = 0;
         ardrone_application_default_config.flying_mode = FLYING_MODE_FREE_FLIGHT;
-        ardrone_application_default_config.video_on_usb = 0;
 
         ardrone_tool_input_add(&teleop);
         uint8_t post_stages_index = 0;
