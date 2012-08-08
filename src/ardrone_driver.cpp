@@ -34,9 +34,21 @@ ARDroneDriver::~ARDroneDriver()
 void ARDroneDriver::run()
 {
 	ros::Rate loop_rate(30);
-
+    ros::Time startTime = ros::Time::now();
+    bool configDone = false;
+    int dummy_zero = 0;
 	while (node_handle.ok())
 	{
+        if ((!configDone) && ((ros::Time::now() - startTime).toSec() > 3.0))
+        {
+            ROS_INFO("Setting CAT_COMMON Configurations after some delay ...");
+            int ultra_freq_select = ((int) this->getRosParam("~ultrasound_freq_select", (double) 0.0)) % 2;
+            ultra_freq_select += ADC_CMD_SELECT_ULTRASOUND_22Hz;
+            ARDRONE_TOOL_CONFIGURATION_ADDEVENT(video_on_usb, &dummy_zero, NULL);
+            ARDRONE_TOOL_CONFIGURATION_ADDEVENT(ultrasound_freq, &ultra_freq_select, NULL);
+            configDone = true;
+        }
+
 		if (current_frame_id != last_frame_id)
 		{
 			publish_video();

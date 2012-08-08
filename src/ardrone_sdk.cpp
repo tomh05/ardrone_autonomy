@@ -53,13 +53,9 @@ extern "C" {
             printf("Something must be really wrong with the SDK!");
         }
         
-        //TODO: Please FIX this to read default values from ros params and move them to ardrone driver
-        //Roadmap: We have the pointer to ARDroneDriver here, so it is doable to return back ros params
-        //using this class.
         ardrone_application_default_config.bitrate_ctrl_mode = (int) rosDriver->getRosParam("~bitrate_ctrl_mode", (double) VBC_MODE_DISABLED);
         if (IS_ARDRONE2)
         {
-            ardrone_application_default_config.video_on_usb = 0;
             ardrone_application_default_config.max_bitrate = (int) rosDriver->getRosParam("~max_bitrate", 4000.0);
         }
         ardrone_application_default_config.bitrate = (int) rosDriver->getRosParam("~bitrate", 4000.0);
@@ -81,8 +77,7 @@ extern "C" {
 //        ardrone_application_default_config.detections_select_v = rosDriver->getRosParam("~detections_select_v", 
 //                (double) TAG_TYPE_MASK(TAG_TYPE_BLACK_ROUNDEL));
         // 0: 22 Hz, 1: 25Hz
-        int ultra_freq_select = ((int) rosDriver->getRosParam("~ultrasound_freq_select", (double) 0.0)) % 2;
-        ardrone_application_default_config.ultrasound_freq = ADC_CMD_SELECT_ULTRASOUND_22Hz + ultra_freq_select;
+
         ardrone_application_default_config.navdata_options = NAVDATA_OPTION_FULL_MASK /*&
         ~(NAVDATA_OPTION_MASK(NAVDATA_TRACKERS_SEND_TAG)
         | NAVDATA_OPTION_MASK(NAVDATA_VISION_OF_TAG)
