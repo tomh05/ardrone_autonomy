@@ -13,3 +13,20 @@
 /nbproject/private/
 Makefile
 /build/CMakeFiles/
+
+# vim swap files
+.*.swap
+
+# compiled ARDroneLib Files
+ARDroneLib/FFMPEG/Includes/
+ARDroneLib/FFMPEG/ffmpeg/
+ARDroneLib/Soft/Build/targets_versions/
+ARDroneLib/Soft/Common/generated_custom.h
+
+#ROS Built Files
+bin/
+build/
+msg_gen/
+src/ardrone_autonomy/
+srv_gen/
+
